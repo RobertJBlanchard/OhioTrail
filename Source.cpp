@@ -83,6 +83,7 @@ void simulateEvent(Traveler& traveler, int& lastEventIndex) {
     cout << "Day " << traveler.days << ": " << events[eventIndex] << endl;
     traveler.days++;
 
+    // Update food, health, and money based on the event
     if (eventIndex == 0) {
         traveler.money += 50;
     }
@@ -244,14 +245,19 @@ int main() {
     while (player.distance < 200) {
         displayMap(player);
 
-        cout << "Health: " << player.health << "%" << endl;
-        cout << "Money: $" << player.money << endl;
-        cout << "Food: " << player.food << " lbs" << endl;
 
         simulateEvent(player, lastEventIndex);
 
         player.distance += 20;
         player.food -= 5;
+
+
+        cout << "Health: " << player.health << "%" << endl;
+        cout << "Money: $" << player.money << endl;
+        cout << "Food: " << player.food << " lbs" << endl;
+        cout << endl;
+
+        
 
         if (player.food < 0 || player.health <= 0 || player.money < 0) {
             cout << "Game Over! " << player.name << " couldn't make it to Cleveland, Ohio. You suck :)" << endl;
