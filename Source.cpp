@@ -64,7 +64,7 @@ vector<string> events = {
     "You tried to trade with a dubious merchant who overcharged you. Lose $60.", // (27)
     "You ate some questionable berries and suffered food poisoning. Lose 15% health and 20 lbs of food.", // (28)
     "You impulse purchased some sick looking rims for your wagon. Lose $150.", // (29)
-    "You accidentally left your food out, and it was engulfed by wildlife from a gender reveal. Lose 30 lbs of food.", // (30)
+    "You accidentally left your food out, and it was engulfed by a wildfire caused by a gender reveal. Lose 30 lbs of food.", // (30)
     "You walked by a trainwreck, and your health and food suffered from toxic chemical exposure. Lose 20% health and 20 lbs of food.", // (31)
     "You misplaced your cartoon looking money bag with a big \"$\" on it. Lose $75.", // (32)
     "You encountered a pack of wolves while traveling. Lose 10% health and 15 lbs of food.", // (33)
