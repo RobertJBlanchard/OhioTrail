@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <chrono>
 
 
 using namespace std;
@@ -16,7 +17,7 @@ public:
     virtual ~Game() {} // Virtual destructor
 };
 
-class MathGame : public Game {
+class MathGame : public Game { //Virtual function (play) being overridden
 public:
     void play() override {
         // Implement the math game logic here
@@ -37,7 +38,7 @@ public:
 
 class Encounter : public Game {
 public:
-    void play() override {
+    void play() override { // Virutal function overriding
         // Implement the encounter logic here
         cout << "You encountered a wild animal! What will you do?" << endl;
         cout << "1. Try to run away\n";
@@ -177,6 +178,23 @@ void displayMap(const Traveler& player) {
     cout << "Your Location: " << cities[player.distance / 100].name << endl;
     cout << "Distance to Destination: " << 200 - player.distance << " miles" << endl;
     cout << "======================================" << endl;
+        auto now = chrono::system_clock::now(); // Grabs the current date and time
+    time_t currentTime = chrono::system_clock::to_time_t(now);
+
+    
+    tm localTime; // Converts time to local time
+#if defined(_MSC_VER)
+    localtime_s(&localTime, &currentTime);
+#else
+    localtime_r(&currentTime, &localTime);
+#endif
+
+    // Formats and displays time for each turn 
+    char timeStr[100];
+    strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", &localTime);
+    cout << "Current Date and Time: " << timeStr << endl;
+    cout << "======================================" << endl;
+
 }
 
 
