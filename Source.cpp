@@ -24,13 +24,14 @@ public:
         int num1 = rand() % 10;
         int num2 = rand() % 10;
 
-        cout << "Math Game: A homeless man offers you a deal. Answer these riddles three and theres a chance you might go free. If a man has " << num2 << " grams of crack on Tuesday and " << num1 << " grams of crack on Wednesday, how much doid he have on Monday? ";
+        cout << "Math Game: A homeless man offers you a deal. Answer these riddles and theres a chance you might go free. If a man has " << num2 << " grams of crack on Tuesday and " << num1 << " grams of crack on Wednesday, how much doid he have on Monday? ";
         int userAnswer;
         cin >> userAnswer;
 
         if (userAnswer == (num2 - num1) + num2) {
             cout << "Correct! Heres some blow!" << endl;
-        } else {
+        }
+        else {
             cout << "Incorrect! Gimme your wallet." << endl;
         }
     }
@@ -48,7 +49,8 @@ public:
 
         if (choice == 1) {
             cout << "You managed to escape the encounter." << endl;
-        } else {
+        }
+        else {
             cout << "The wild animal attacks you! You lose 20% health." << endl;
             // Update player's health or take other relevant actions
         }
@@ -158,7 +160,8 @@ static void solveAerospaceProblem(Traveler& traveler) {
         cout << "Congratulations! (Smooch) Your calculations are correct! You really are an Aerospace Engineer! Cherio! Dr Hall then leaves, but you will never be the same. Forever changed by his presence. The PTSD of this ecounter will be felt three generations down the line. I am so sorry." << endl;
         traveler.money += 52000;
         traveler.health += 10;
-    } else {
+    }
+    else {
         // Incorrect input, lose money and health
         cout << "Incorrect! Dr. Hall unhinges his jaw like an Anaconda and swollows you whole." << endl;
         traveler.health = 0;
@@ -178,10 +181,10 @@ void displayMap(const Traveler& player) {
     cout << "Your Location: " << cities[player.distance / 100].name << endl;
     cout << "Distance to Destination: " << 200 - player.distance << " miles" << endl;
     cout << "======================================" << endl;
-        auto now = chrono::system_clock::now(); // Grabs the current date and time
+    auto now = chrono::system_clock::now(); // Grabs the current date and time
     time_t currentTime = chrono::system_clock::to_time_t(now);
 
-    
+
     tm localTime; // Converts time to local time
 #if defined(_MSC_VER)
     localtime_s(&localTime, &currentTime);
@@ -193,7 +196,7 @@ void displayMap(const Traveler& player) {
     char timeStr[100];
     strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", &localTime);
     cout << "Current Date and Time: " << timeStr << endl;
-    cout << "======================================" << endl;
+    cout << "======================================\n" << endl;
 
 }
 
@@ -205,7 +208,7 @@ void simulateEvent(Traveler& traveler, int& lastEventIndex) {
         eventIndex = rand() % events.size();
     } while (eventIndex == lastEventIndex);
 
-    lastEventIndex = eventIndex;
+    lastEventIndex = eventIndex; //prevents same event twice in a row
 
     cout << "Day " << traveler.days << ": " << events[eventIndex] << endl;
     traveler.days++;
@@ -337,7 +340,7 @@ void simulateEvent(Traveler& traveler, int& lastEventIndex) {
         traveler.money -= 80;
     }
     else if (eventIndex == 36) {
-            solveAerospaceProblem(traveler);
+        solveAerospaceProblem(traveler);
     }
 }
 
@@ -347,7 +350,8 @@ void simulateEvent(Traveler& traveler, int& lastEventIndex) {
 
 
 
-int main() {
+int main() { // MAIN
+
     srand(time(0));
 
     cout << "  _____ _           ___  _    _       _____         _ _ " << endl;
@@ -381,7 +385,7 @@ int main() {
         cout << "Food: " << player.food << " lbs" << endl;
         cout << endl;
 
-        
+
 
         if (player.food < 0 || player.health <= 0 || player.money < 0) {
             cout << "Game Over! " << player.name << " couldn't cut it in Ohio. You suck :)" << endl;
@@ -394,9 +398,9 @@ int main() {
         cout << "2. Rest\n";
         cout << "3. Continue\n";
         // Check if the encounter option should be available
-                if (lastEventIndex == 2) { // Change this condition to match the specific event index
-                    cout << "4. Encounter\n"; // New option
-                }
+        if (lastEventIndex == 2) { // Change this condition to match the specific event index
+            cout << "4. Encounter\n"; // New option
+        }
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -430,26 +434,27 @@ int main() {
         case 3:
             break;
 
-         
+
         case 4:
-                // Play the Encounter only when the specific event occurs
+            // Play the Encounter only when the specific event occurs
             if (lastEventIndex == 2) { // Change this condition to match the specific event index
                 Encounter wildAnimalEncounter;
                 wildAnimalEncounter.play();
-            } else {
+            }
+            else {
                 cout << "No encounter available at the moment." << endl;
             }
-                break;
-                
-                default:
-                    cout << "Invalid choice. Please choose a valid option." << endl;
-                
+            break;
+
+        default:
+            cout << "Invalid choice. Please choose a valid option." << endl;
+
         }
 
         cout << "\nPress Enter to continue...";
         cin.get();
         cin.ignore();
-        
+
     }
 
     if (player.distance >= 200) {
